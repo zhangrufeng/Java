@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="default" extends="struts-default" namespace="/">
+		<action name="testResult" class="com.zrf.struts2.action.TestResultAction">
+			<result name="success" type="dispatcher">success.jsp</result>
+			<result name="login" type="redirect">login.jsp</result>
+			
+			<!-- 
+			<result name="index" type="redirectAction">
+				<param name="actionName">testAction</param>
+				<param name="namespace">/zrf</param>
+			</result>
+             -->
+            <result name="index" type="redirect">/zrf/testAction.action</result>
+
+			<result name="test" type="chain">
+			  <param name="actionName">testAction</param>
+			  <param name="namespace">/zrf</param>
+			  </result>
+		</action>
+	</package>
+	<package name="testPackage" extends="struts-default" namespace="/zrf">
+		<action name="testAction" class="com.zrf.struts2.action.TestAction">
+			<result name="success">success.jsp</result>
+		</action>
+	</package>
+</struts>

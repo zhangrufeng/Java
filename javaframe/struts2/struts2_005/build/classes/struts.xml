@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<constant name="struts.action.extension" value="action,do,"></constant>
+	<!-- 
+	在struts2.5中，使用通配符*映射，总是报错显示没有这个action的mapppe。多方百度，才解决了问题。
+	只要在需要通配符映射的package中添加一个属性strict-method-invocation="false" 
+		即可。 -->
+	<package name="default" extends="struts-default" namespace="/"
+		strict-method-invocation="false">
+		<action name="UserAction-*" class="com.zrf.struts2.action.UserAction"
+			method="{1}">
+			<result name="{1}-success">success.jsp</result>
+		</action>
+		<action name="UserAction-test" class="com.zrf.struts2.action.UserAction"
+			method="test">
+			<result name="test-success">success.jsp</result>
+		</action>
+		<!-- <action name="UserAction-save" class="com.zrf.struts2.action.UserAction" 
+			method="save"> <result name="save-success">success.jsp</result> </action> 
+			<action name="UserAction-update" class="com.zrf.struts2.action.UserAction" 
+			method="update"> <result name="update-success">success.jsp</result> </action> 
+			<action name="UserAction-delete" class="com.zrf.struts2.action.UserAction" 
+			method="delete"> <result name="delete-success">success.jsp</result> </action> 
+			<action name="UserAction-query" class="com.zrf.struts2.action.UserAction" 
+			method="query"> <result name="query-success">success.jsp</result> </action> -->
+	</package>
+</struts>
